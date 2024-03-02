@@ -1,5 +1,5 @@
-import NewsList from '@/components/news-list';
+import ListComponent from '@/components/list-component';
 
 export default function Home() {
-  return <NewsList />;
+  return <ListComponent />;
 }

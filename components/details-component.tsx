@@ -100,7 +100,7 @@ export default function DetailsComponent() {
             Rackham.
           </p>
 
-          <Link href="/news" style={{ color: '#000', fontSize: '20px' }}>
+          <Link href="/" style={{ color: '#000', fontSize: '20px' }}>
             Go Back
           </Link>
         </div>

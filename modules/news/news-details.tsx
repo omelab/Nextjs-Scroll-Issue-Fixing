@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function NewsDetails() {
+export default function NewsDetailsComponent() {
   return (
     <main>
       <div className="flex items-center min-h-96 bg-sky-600 p-20">
@@ -100,7 +100,7 @@ export default function NewsDetails() {
             Rackham.
           </p>
 
-          <Link href="/" style={{ color: '#000', fontSize: '20px' }}>
+          <Link href="/news" style={{ color: '#000', fontSize: '20px' }}>
             Go Back
           </Link>
         </div>

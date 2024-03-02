@@ -1,9 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
+import { AppDispatch, RootState } from '@/redux/store';
+import { setScroll, clearScroll } from '@/redux/reducers/scrollSlice';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function ListComponent() {
   const router = useRouter();
+
+  const scrollOption = useSelector(
+    (state: RootState) => state.scrl.scrollOption
+  );
+
+  const dispatch: AppDispatch = useDispatch();
 
   // Define initial scroll position state
   const [scrly, setScrlY] = useState<number>(0);
@@ -25,21 +35,22 @@ export default function ListComponent() {
   }, []);
 
   useEffect(() => {
-    const scrollPos = localStorage.getItem('scrollPosition');
-    console.log(`initial scroll ${scrollPos}`);
-    if (scrollPos) {
-      const position = parseInt(scrollPos);
-      window.scrollTo(0, position);
+    const { scrly } = scrollOption ?? { scrly: 0 };
+    console.log(scrly);
+
+    if (scrly) {
+      //set scroll position
+      window.scrollTo(0, scrly);
+      // localStorage.removeItem('scrollPosition');
+      dispatch(clearScroll());
     }
   }, []);
 
   const onClickHandler =
     (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
       event.preventDefault(); // Prevent default action
-      console.log(scrly);
       if (scrly >= 0) {
-        // Convert scroll position to number and handle scroll
-        localStorage.setItem('scrollPosition', scrly.toString());
+        dispatch(setScroll({ scrly: scrly }));
       }
       router.push(url);
     };
@@ -60,10 +71,10 @@ export default function ListComponent() {
           </p>
           <a
             href="http://example.com"
-            onClick={onClickHandler('/news/details')}
+            onClick={onClickHandler('/details')}
             className="mt-5 block text-orange-600"
           >
-            Go UI {scrly}
+            Go Details {scrly}
           </a>
         </div>
       </div>
@@ -82,10 +93,10 @@ export default function ListComponent() {
           </p>
           <a
             href="http://example.com"
-            onClick={onClickHandler('/news/details')}
+            onClick={onClickHandler('/details')}
             className="mt-5 block text-orange-600"
           >
-            Go UI {scrly}
+            Go Details {scrly}
           </a>
         </div>
       </div>
@@ -104,10 +115,10 @@ export default function ListComponent() {
           </p>
           <a
             href="http://example.com"
-            onClick={onClickHandler('/news/details')}
+            onClick={onClickHandler('/details')}
             className="mt-5 block text-orange-600"
           >
-            Go UI {scrly}
+            Go Details {scrly}
           </a>
         </div>
       </div>
@@ -126,10 +137,10 @@ export default function ListComponent() {
           </p>
           <a
             href="http://example.com"
-            onClick={onClickHandler('/news/details')}
+            onClick={onClickHandler('/details')}
             className="mt-5 block text-orange-600"
           >
-            Go UI {scrly}
+            Go Details {scrly}
           </a>
         </div>
       </div>
@@ -148,10 +159,10 @@ export default function ListComponent() {
           </p>
           <a
             href="http://example.com"
-            onClick={onClickHandler('/news/details')}
+            onClick={onClickHandler('/details')}
             className="mt-5 block text-orange-600"
           >
-            Go UI {scrly}
+            Go Details {scrly}
           </a>
         </div>
       </div>
@@ -170,10 +181,10 @@ export default function ListComponent() {
           </p>
           <a
             href="http://example.com"
-            onClick={onClickHandler('/news/details')}
+            onClick={onClickHandler('/details')}
             className="mt-5 block text-orange-600"
           >
-            Go UI {scrly}
+            Go Details {scrly}
           </a>
         </div>
       </div>
