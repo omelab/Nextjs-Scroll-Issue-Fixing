@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { MouseEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ListComponent() {
   const router = useRouter();
@@ -33,18 +33,16 @@ export default function ListComponent() {
     }
   }, []);
 
-  const handleClick = (
-    scrollPosition: string | undefined
-  ): MouseEventHandler<HTMLButtonElement> => {
-    return (event) => {
-      console.log(scrollPosition);
-      if (scrollPosition !== undefined) {
+  const onClickHandler =
+    (url: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault(); // Prevent default action
+      console.log(scrly);
+      if (scrly >= 0) {
         // Convert scroll position to number and handle scroll
-        localStorage.setItem('scrollPosition', scrollPosition);
+        localStorage.setItem('scrollPosition', scrly.toString());
       }
-      router.push('/ui');
+      router.push(url);
     };
-  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -60,12 +58,13 @@ export default function ListComponent() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged.
           </p>
-          <button
-            onClick={handleClick(scrly?.toString())}
+          <a
+            href="http://example.com"
+            onClick={onClickHandler('/news/details')}
             className="mt-5 block text-orange-600"
           >
             Go UI {scrly}
-          </button>
+          </a>
         </div>
       </div>
 
@@ -81,12 +80,13 @@ export default function ListComponent() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged.
           </p>
-          <button
-            onClick={handleClick(scrly?.toString())}
+          <a
+            href="http://example.com"
+            onClick={onClickHandler('/news/details')}
             className="mt-5 block text-orange-600"
           >
             Go UI {scrly}
-          </button>
+          </a>
         </div>
       </div>
 
@@ -102,12 +102,13 @@ export default function ListComponent() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged.
           </p>
-          <button
-            onClick={handleClick(scrly?.toString())}
+          <a
+            href="http://example.com"
+            onClick={onClickHandler('/news/details')}
             className="mt-5 block text-orange-600"
           >
             Go UI {scrly}
-          </button>
+          </a>
         </div>
       </div>
 
@@ -123,12 +124,13 @@ export default function ListComponent() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged.
           </p>
-          <button
-            onClick={handleClick(scrly?.toString())}
+          <a
+            href="http://example.com"
+            onClick={onClickHandler('/news/details')}
             className="mt-5 block text-orange-600"
           >
             Go UI {scrly}
-          </button>
+          </a>
         </div>
       </div>
 
@@ -144,12 +146,13 @@ export default function ListComponent() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged.
           </p>
-          <button
-            onClick={handleClick(scrly?.toString())}
+          <a
+            href="http://example.com"
+            onClick={onClickHandler('/news/details')}
             className="mt-5 block text-orange-600"
           >
             Go UI {scrly}
-          </button>
+          </a>
         </div>
       </div>
 
@@ -165,12 +168,13 @@ export default function ListComponent() {
             only five centuries, but also the leap into electronic typesetting,
             remaining essentially unchanged.
           </p>
-          <button
-            onClick={handleClick(scrly?.toString())}
-            className="mt-5 block text-emerald-300"
+          <a
+            href="http://example.com"
+            onClick={onClickHandler('/news/details')}
+            className="mt-5 block text-orange-600"
           >
             Go UI {scrly}
-          </button>
+          </a>
         </div>
       </div>
     </main>
