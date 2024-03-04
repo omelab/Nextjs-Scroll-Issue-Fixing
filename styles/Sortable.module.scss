@@ -1,0 +1,67 @@
+.draggable {
+    cursor: grab;
+    padding: 8px;
+    margin-bottom: 4px;
+    background-color: #9a1818;
+    border: 1px solid #8c3131;
+    border-radius: 4px; 
+    &:hover {
+        background-color: #e0e0e0;
+    }
+
+    &[draggable="true"] {
+        cursor: grabbing;
+    }
+}
+
+.droppable {
+    padding: 8px;
+    margin-bottom: 4px;
+    background-color: #f5f5f5;
+    border: 1px dashed #999;
+    border-radius: 4px; 
+    &:hover {
+        background-color: #eaeaea;
+    }
+}
+
+.sortable {
+    display: flex;
+    flex-direction: column;
+}
+
+.sortable .nested-sortable {
+    margin-left: 20px;
+}
+
+/* Optional: Add transitions for smoother dragging */
+.draggable,
+.droppable {
+    transition: background-color 0.3s ease;
+}
+
+/* NestedSortable Component */
+.nestedSortable {
+    padding: 8px;
+    margin-bottom: 4px;
+    background-color: #f5f5f5;
+    border: 1px dashed #999;
+    border-radius: 4px;
+}
+
+/* Draggable Style */
+.nestedSortable.draggable {
+    background-color: #f0f0f0;
+    cursor: grabbing;
+}
+
+/* Hover Effect */
+.nestedSortable:hover {
+    background-color: #eaeaea;
+}
+
+/* Optional: Add transitions for smoother dragging */
+.nestedSortable,
+.draggable {
+    transition: background-color 0.3s ease;
+}

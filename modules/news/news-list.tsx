@@ -7,9 +7,18 @@ import data from '@/data/news.json';
 import { AppDispatch, RootState } from '@/redux/store';
 import { setScroll, clearScroll } from '@/redux/reducers/scrollSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useGetBlogsQuery } from '@/redux/api/blog';
 
 export default function NewsListComponent() {
   const router = useRouter();
+
+  const {
+    data: itemData,
+    error,
+    isLoading,
+  } = useGetBlogsQuery(
+    'status=DRAFT&status=PUBLISHED&newsFormat=STANDARD&orderKey=id&orderType=desc'
+  );
 
   const scrollOption = useSelector(
     (state: RootState) => state.scrl.scrollOption
@@ -70,6 +79,11 @@ export default function NewsListComponent() {
     router.push(url);
   };
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) {
+    return <div> Unknown error</div>;
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {data &&
@@ -77,7 +91,7 @@ export default function NewsListComponent() {
           <div className="p-2" key={index}>
             <NewsCard
               onClick={() => clickHandler('/news/details')}
-              data={{ ...item, scrly }}
+              data={{ ...item, scrly: 1 }}
             />
           </div>
         ))}
