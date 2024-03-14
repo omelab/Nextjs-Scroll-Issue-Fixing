@@ -3,7 +3,7 @@ import baseApi from './base';
 export const blogApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getBlogs: builder.query({
-      query: (query) => `/news/all${query ? `?${query}` : ''}`,
+      query: (query) => `/public/news${query ? `?${query}` : ''}`,
     }),
     createBlog: builder.mutation({
       query: (newBlog) => ({
